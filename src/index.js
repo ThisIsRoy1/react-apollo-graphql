@@ -28,7 +28,7 @@ const authLink = setContext((_, { headers }) => {
             authorization: token ? `Bearer ${token}` : ''
         }
     }
-})
+});
 
 const wsLink = new WebSocketLink({
     uri: `ws://localhost:4000`,
@@ -38,7 +38,7 @@ const wsLink = new WebSocketLink({
             authToken: localStorage.getItem(AUTH_TOKEN),
         }
     }
-})
+});
 
 const link = split(
     ({ query }) => {
@@ -47,8 +47,7 @@ const link = split(
     },
     wsLink,
     authLink.concat(httpLink)
-)
-
+);
 
 // 3
 const client = new ApolloClient({
